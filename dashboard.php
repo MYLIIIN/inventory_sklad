@@ -17,10 +17,8 @@ $stmt->bind_result($role);
 $stmt->fetch();
 $stmt->close();
 
-// Сохранение роли
 $_SESSION['role'] = $role;
 
-// Если роль недействительна, перенаправляем на страницу входа
 if (!in_array($role, ['admin', 'user'])) {
     header("Location: index.php");
     exit;
@@ -72,7 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_product'])) {
             $stmt->fetch();
             $stmt->close();
 
-            // Проверка на наличие товара и достаточно ли количества
             if ($current_quantity >= $delete_quantity) {
                 $new_quantity = $current_quantity - $delete_quantity;
 
@@ -173,7 +170,6 @@ $stmt->close();
             </form>
         <?php endif; ?>
 
-        <!-- Таблица каталога -->
         <h2>Каталог</h2>
         <div class="search-bar">
             <form method="GET" action="dashboard.php">
